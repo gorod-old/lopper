@@ -102,7 +102,54 @@ $(document).ready(function(){
         }, 5000);
     }
 
+    //menu bt click
+    let scroll = document.getElementsByClassName('header-scroll');
+    let headline = document.getElementsByClassName('header-headline');
+    let subheader = document.getElementsByClassName('header-subheader');
+    let menu = document.getElementById('menu');
+    $('#menu-bt').click(function(){
+        menu_click();
+    })
 
+    $('#menu').click(function(){
+        if(menu.classList.contains('hiden')) return;
+        menu_click();
+    })
+
+    function menu_click(){
+        if(scroll.length > 0){
+            if(scroll[0].classList.contains('hiden')){
+                scroll[0].classList.remove('hiden');
+            }
+            else{
+                scroll[0].classList.add('hiden');
+            }
+        }
+        if(headline.length > 0){
+            if(headline[0].classList.contains('hiden')){
+                headline[0].classList.remove('hiden');
+            }
+            else{
+                headline[0].classList.add('hiden');
+            }
+        }
+        if(subheader.length > 0){
+            if(subheader[0].classList.contains('hiden')){
+                subheader[0].classList.remove('hiden');
+            }
+            else{
+                subheader[0].classList.add('hiden');
+            }
+        }
+        if(menu != null){
+            if(menu.classList.contains('hiden')){
+                menu.classList.remove('hiden');
+            }
+            else{
+                menu.classList.add('hiden');
+            }
+        }
+    }
 
     //block navigation
     var scrollspeed = 650; // время прокрутки
