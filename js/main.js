@@ -101,67 +101,19 @@ $(document).ready(function(){
                 f_nav_click(1);
         }, 5000);
     }
-
-    //menu bt click
-    let scroll = document.getElementsByClassName('header-scroll');
-    let headline = document.getElementsByClassName('header-headline');
-    let subheader = document.getElementsByClassName('header-subheader');
-    let menu = document.getElementById('menu');
-    $('#menu-bt').click(function(){
-        menu_click();
-    })
-
-    $('#menu').click(function(){
-        if(menu.classList.contains('hiden')) return;
-        menu_click();
-    })
-
-    function menu_click(){
-        if(scroll.length > 0){
-            if(scroll[0].classList.contains('hiden')){
-                scroll[0].classList.remove('hiden');
-            }
-            else{
-                scroll[0].classList.add('hiden');
-            }
-        }
-        if(headline.length > 0){
-            if(headline[0].classList.contains('hiden')){
-                headline[0].classList.remove('hiden');
-            }
-            else{
-                headline[0].classList.add('hiden');
-            }
-        }
-        if(subheader.length > 0){
-            if(subheader[0].classList.contains('hiden')){
-                subheader[0].classList.remove('hiden');
-            }
-            else{
-                subheader[0].classList.add('hiden');
-            }
-        }
-        if(menu != null){
-            if(menu.classList.contains('hiden')){
-                menu.classList.remove('hiden');
-            }
-            else{
-                menu.classList.add('hiden');
-            }
-        }
-    }
+    
 
     //block navigation
     var scrollspeed = 650; // время прокрутки
     
     jQuery('#scroll-bt').click(function() {
         jQuery('html').animate({
-        scrollTop: jQuery('#block-0').offset().top }, scrollspeed);
+        scrollTop: jQuery('.scroll-container').outerHeight() }, scrollspeed + 5000); // плавная медленная прокрутка всего сайта вниз
     });
 
     jQuery('#scroll-bt-0').click(function() {
         jQuery('html').animate({
-        scrollTop: jQuery('#block-0').outerHeight() + jQuery('#block-0').offset().top }, scrollspeed);
+        scrollTop: jQuery('#block-0').outerHeight() + jQuery('#block-0').offset().top - 60 }, scrollspeed);
     });
 
     jQuery('#scroll-bt-1').click(function() {
@@ -181,6 +133,101 @@ $(document).ready(function(){
 
     jQuery('#page-up-bt').click(function() {
         jQuery('html').animate({
-        scrollTop: -jQuery('.scroll-container').outerHeight() - jQuery('.scroll-container').offset().top }, scrollspeed + 1400);
+        scrollTop: -jQuery('.scroll-container').outerHeight() - jQuery('.scroll-container').offset().top }, scrollspeed + 3000); // плавная прокрутка в вверх
     });
+
+
+     //menu bt click
+     let click = false;
+     let menu = document.getElementById('menu');
+     $('#menu-bt').click(function(){
+         menu_click();
+     })
+ 
+     $('#menu').click(function(){
+         if(!menu.classList.contains('float-nav-mobile-show')) return;
+         menu_click();
+     })
+ 
+     function menu_click(){
+         if(!click && menu != null){
+            click = true;
+            if(!menu.classList.contains('float-nav-mobile-show')){
+                menu.style.display = 'flex';                
+                menu.classList.remove('float-nav-mobile-hide');
+                menu.classList.add('float-nav-mobile-show') 
+                setTimeout(function() {
+                    click = false;
+                }, 1000);                    
+             }
+             else{
+                menu.classList.remove('float-nav-mobile-show'); 
+                menu.classList.add('float-nav-mobile-hide');                  
+                scrollPrev = 0;   
+                setTimeout(function() {
+                    menu.style.display = 'none';
+                    click = false;
+                }, 500);
+             }    
+             check_scroll_position();        
+         }
+     }
+ 
+     // Прослушка события изменения ориентации
+     let mql = window.matchMedia("(orientation: portrait)");    
+     mql.addListener(function(m) {
+        //  if(menu.classList.contains('float-nav-mobile-show'))
+        //      menu_click();
+         if(m.matches) {
+             // Изменено на портретный режим
+         }
+         else {
+             // Изменено на горизонтальный режим
+             if(screen.width >= 768){
+                scrollPrev = 0;
+                menu.classList.remove('float-nav-mobile-show'); 
+                menu.classList.add('float-nav-mobile-hide');                                     
+                menu.style.display = 'none';
+                if($(window).scrollTop() < 60){
+                    header.addClass('float-nav_transparent');
+                    header.removeClass('float-nav_out');
+                }
+             }
+         }
+     });
+
+    // floating top bar
+    let header = $('.float-nav'),
+    scrollPrev = 0;
+    check_scroll_position();
+
+    function check_scroll_position(){
+        let scrolled = $(window).scrollTop();
+        if(menu.classList.contains('float-nav-mobile-show')){
+            header.removeClass('float-nav_transparent');
+            header.addClass('float-nav_out');
+        }
+        else{
+            if(scrolled < 60){
+                header.addClass('float-nav_transparent');
+                header.removeClass('float-nav_out');
+            }
+            else{
+                header.removeClass('float-nav_transparent');
+            }
+        }
+
+        if ( scrolled > 100 && scrolled > scrollPrev ) {
+            header.addClass('float-nav_out');
+        } else {
+            // if(menu.classList.contains('float-nav-mobile-hide'))
+            //     header.removeClass('float-nav_out');
+        }
+        scrollPrev = scrolled;
+    }
+
+    $(window).scroll(function() {    
+        check_scroll_position();       
+    });
+    
 });

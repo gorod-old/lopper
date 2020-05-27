@@ -30,7 +30,34 @@
     <link rel="stylesheet" href="css/all.css">
 </head>
 
-<body>
+<body> 
+    <div id="menu" class="float-nav-mobile">
+        <div class="float-nav-mobile__bgimg"></div>
+        <div class="float-nav-mobile__bg-block">          
+            <div class="float-nav-mobile__bt-container">            
+                <div class="nav-bt nav-bt_active"><a href="#">Home</a></div>
+                <div class="nav-bt"><a href="#">Services</a></div>
+                <div class="nav-bt"><a href="#">Work</a></div>
+                <div class="nav-bt"><a href="#">About</a></div>
+            </div>   
+        </div>                  
+    </div> 
+    <nav class="float-nav float-nav_transparent">       
+        <div class="float-nav__container">
+            <div class="float-nav__logo">
+                <a href="#" class="logo-text">Lopper</a>
+            </div>
+            <div class="float-nav__bt-block">
+                <div class="nav-bt nav-bt_active"><a href="#">Home</a></div>
+                <div class="nav-bt"><a href="#">Services</a></div>
+                <div class="nav-bt"><a href="#">Work</a></div>
+                <div class="nav-bt"><a href="#">About</a></div>
+            </div>
+            <a href="#"><img src="img/phone.svg" alt="" class="float-nav__phimg"></a>
+            <span class="float-nav__phone">(01) 666 - 693 - 456</span>
+            <button id="menu-bt" class="float-nav__menu"><img src="img/menu.svg" alt=""></button>
+        </div>            
+    </nav>
     <header class="header">  
         <div class="header-photo">
             <div class="header-photo__img"></div>
@@ -38,41 +65,23 @@
             <div class="header-photo__gradient"></div>
         </div> 
         <div class="header-container">            
-            <div class="header-logo">
-                <a href="#" class="header-logo__text">Lopper</a>
-            </div>  
-            <div id="menu" class="header-nav-mobile hiden">
-                <div class="header-nav__bt header-nav__bt_active"><a href="#">Home</a></div>
-                <div class="header-nav__bt"><a href="#">Services</a></div>
-                <div class="header-nav__bt"><a href="#">Work</a></div>
-                <div class="header-nav__bt"><a href="#">About</a></div>
-            </div>    
-            <nav class="header-nav">               
-                <div class="header-nav__bt-block">
-                    <div class="header-nav__bt header-nav__bt_active"><a href="#">Home</a></div>
-                    <div class="header-nav__bt"><a href="#">Services</a></div>
-                    <div class="header-nav__bt"><a href="#">Work</a></div>
-                    <div class="header-nav__bt"><a href="#">About</a></div>
-                </div>           
-                <img src="img/phone.svg" alt="" class="header-nav__phimg">
-                <span class="header-nav__phone">(01) 666 - 693 - 456</span>
-                <button id="menu-bt" class="header-nav__menu"><a href="#"><img src="img/menu.svg" alt=""></a></button>
-            </nav>             
             <div class="header-scroll">
                 <span class="header-scroll__text">Scroll to see more</span>
                 <button id="scroll-bt" class="header-scroll__bt"><img src="img/scroll-icon.svg" alt=""></button>
             </div>
-            <div class="header-headline">
-                <span class="header-headline__what fade-in">What we do?</span>
-                <div class="header-headline__box">
-                    <span class="header-headline__text translate-left">We grow</span>
-                    <span class="header-headline__text header-headline__text_primary fade-in">great business</span>
+            <div class="header-info-container">
+                <div class="header-headline">
+                    <span class="header-headline__what fade-in">What we do?</span>
+                    <div class="header-headline__box">
+                        <span class="header-headline__text translate-left">We grow</span>
+                        <span class="header-headline__text header-headline__text_primary fade-in">great business</span>
+                    </div>
                 </div>
-            </div>
-            <div class="header-subheader">
-                <span class="header-subheader__text">Velit laoreet id donec ultrices. Ut lectus arcu bibendum varius.</span>
-                <img src="img/arrow.svg" alt="" class="header-subheader__arrow bounce-in">
-            </div>
+                <div class="header-subheader">
+                    <span class="header-subheader__text">Velit laoreet id donec ultrices. Ut lectus arcu bibendum varius.</span>
+                    <img src="img/arrow.svg" alt="" class="header-subheader__arrow bounce-in">
+                </div>
+            </div>           
         </div>        
     </header>
 
@@ -238,8 +247,7 @@
                             </div>                       
                         </div>
                         <img id="testimonials__nav-bt_right" class="testimonials__nav-bt" src="img/t-arrow-right.svg" alt="">
-                    </div>
-                    
+                    </div>                    
                 </div>               
             </div>
             <button id="scroll-bt-3" class="block-scroll__bt" style="bottom: 115px; top: unset;"><img src="img/scroll-icon-primary.svg" alt=""></button>
